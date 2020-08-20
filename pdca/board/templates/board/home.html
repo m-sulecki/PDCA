@@ -23,4 +23,23 @@
     nulla bibendum semper.
 </p>
 
+    {% for task in tasks %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ task.in_charge }}</a>
+              <small class="text-muted">{{ task.date_notification|date:"F d, Y" }}</small>
+            </div>
+            <h2><a class="article-title" href="#">{{ task.problem }}</a></h2>
+            <p class="article-content">{{ task.action }}</p>
+          </div>
+        </article>
+        <table>
+        <tr>
+            <td>{{ task.date_notification }}</td><td>{{ task.planed_date }}</td><td>{{ task.done_date }}</td><td>{{ task.importance }}</td><td>{{ task.status }}</td>
+        </tr>
+        </table>
+    {% endfor %}
+
+
 {% endblock content %}
