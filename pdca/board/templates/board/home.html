@@ -25,6 +25,7 @@
 
     {% for task in tasks %}
         <article class="media content-section">
+          <img class="rounded-circle article-img" src="{{ task.in_charge.profile.image.url }}">
           <div class="media-body">
             <div class="article-metadata">
               <a class="mr-2" href="#">{{ task.in_charge }}</a>
@@ -40,6 +41,4 @@
         </tr>
         </table>
     {% endfor %}
-
-
 {% endblock content %}
