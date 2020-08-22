@@ -1,5 +1,11 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+)
 from .models import Task
 
 
@@ -21,7 +27,16 @@ class TaskDetailView(DetailView):
     model = Task
 
 
-class TaskCreateView(CreateView):
+class TaskCreateView(LoginRequiredMixin, CreateView):
+    model = Task
+    fields = '__all__'
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
+class TaskUpdateView(LoginRequiredMixin, UpdateView):
     model = Task
     fields = '__all__'
 

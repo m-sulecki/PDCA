@@ -31,7 +31,7 @@
               <a class="mr-2" href="#">{{ task.in_charge }}</a>
               <small class="text-muted">{{ task.date_notification|date:"F d, Y" }}</small>
             </div>
-            <h2><a class="article-title" href="#">{{ task.problem }}</a></h2>
+            <h2><a class="article-title" href="{% url 'task-detail' task.id %}">{{ task.problem }}</a></h2>
             <p class="article-content">{{ task.action }}</p>
           </div>
         </article>
