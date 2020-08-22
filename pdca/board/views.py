@@ -48,6 +48,7 @@ class TaskUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 class TaskDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Task
+    success_url = '/'
 
     def test_func(self):
         task = self.get_object()
