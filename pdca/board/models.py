@@ -5,7 +5,6 @@ from django.contrib.auth.models import User
 
 
 class Task(models.Model):
-
     HIGH = 3
     MEDIUM = 2
     SMALL = 1
@@ -26,8 +25,7 @@ class Task(models.Model):
     status = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.title
-
+        return self.problem
 
     def get_absolute_url(self):
         return reverse('task-detail', kwargs={'pk': self.pk})
