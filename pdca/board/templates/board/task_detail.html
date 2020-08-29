@@ -1,0 +1,25 @@
+{% extends "board/base.html" %}
+{% block content %}
+    <article class="media content-section">
+      <img class="rounded-circle article-img" src="{{ object.in_charge.profile.image.url }}">
+      <div class="media-body">
+        <div class="article-metadata">
+          <a class="mr-2" href="#">{{ object.in_charge }}</a>
+          <small class="text-muted">{{ object.date_notification|date:"F d, Y" }}</small>
+            {% if object.in_charge == user %}
+                <div>
+                    <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'task-update' object.id %}">Update</a>
+                    <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'task-delete' object.id %}">Delete</a>
+                </div>
+            {% endif %}
+        </div>
+        <h2 class="article-title">{{ object.problem }}</h2>
+        <p class="article-content">{{ object.action }}</p>
+      </div>
+    </article>
+    <table>
+    <tr>
+        <td>{{ object.date_notification }}</td><td>{{ object.planed_date }}</td><td>{{ object.done_date }}</td><td>{{ object.importance }}</td><td>{{ task.status }}</td>
+    </tr>
+    </table>
+{% endblock content %}
