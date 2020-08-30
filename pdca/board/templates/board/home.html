@@ -28,17 +28,20 @@
           <img class="rounded-circle article-img" src="{{ task.in_charge.profile.image.url }}">
           <div class="media-body">
             <div class="article-metadata">
-              <a class="mr-2" href="#">{{ task.in_charge }}</a>
-              <small class="text-muted">{{ task.date_notification|date:"F d, Y" }}</small>
+              <a class="mr-2">{{ task.in_charge.first_name }} {{ task.in_charge.last_name }}</a>
             </div>
             <h2><a class="article-title" href="{% url 'task-detail' task.id %}">{{ task.problem }}</a></h2>
             <p class="article-content">{{ task.action }}</p>
+              <table>
+                <tr>
+                    <td>{{ task.date_notification|date:"F d, Y" }}</td>
+                    <td>{{ task.planed_date|date:"F d, Y" }}</td>
+                    <td>{{ task.done_date|date:"F d, Y" }}</td>
+                    <td>{{ task.importance }}</td>
+                    <td>{{ task.status }}</td>
+                </tr>
+              </table>
           </div>
         </article>
-        <table>
-        <tr>
-            <td>{{ task.date_notification }}</td><td>{{ task.planed_date }}</td><td>{{ task.done_date }}</td><td>{{ task.importance }}</td><td>{{ task.status }}</td>
-        </tr>
-        </table>
     {% endfor %}
 {% endblock content %}
