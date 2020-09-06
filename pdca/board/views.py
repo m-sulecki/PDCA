@@ -2,6 +2,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Task
+from django import forms
+from django.forms.fields import DateField
 
 
 def home(request):
@@ -25,6 +27,13 @@ class TaskDetailView(DetailView):
 class TaskCreateView(LoginRequiredMixin, CreateView):
     model = Task
     fields = '__all__'
+
+    def get_form(self, form_class=None):
+        form = super(TaskCreateView, self).get_form(form_class)
+        form.fields['date_notification'].widget = forms.DateInput()
+        form.fields['planed_date'].widget = forms.DateInput()
+        form.fields['done_date'].widget = forms.DateInput()
+        return form
 
     def form_valid(self, form):
         form.instance.in_charge = self.request.user
